@@ -1,0 +1,30 @@
+---
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: Update repository index (CentOS)
+    dnf:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "CentOS"
+
+  - name: Install Update (Ubuntu)
+    apt:
+      update_cache: yes
+    changed_when: false
+    when: ansible_distribution == "Ubuntu"
+
+- hosts: UbuntuComputer
+  become: true
+  roles:
+    - Enterprise
+    - Monitoring
+    - banner
+
+- hosts: CentOSComputer
+  become: true
+  roles:
+    - Enterprise
+    - Monitoring
+    - banner

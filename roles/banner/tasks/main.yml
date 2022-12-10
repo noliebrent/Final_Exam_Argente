@@ -1,0 +1,9 @@
+- name: Creating Banner Motd in Ubuntu
+  debug:
+    msg: "Ansible Managed node by Argente"
+  when: ansible_distribution == "Ubuntu"
+
+- name: Creating Banner Motd in CentOS
+  debug:
+    msg: "Ansible Managed node by Argente"
+  when: ansible_distribution == "CentOS"

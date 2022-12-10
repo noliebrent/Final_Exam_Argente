@@ -1,0 +1,28 @@
+- name: Install Apache Enterprise Service in Ubuntu
+  apt:
+    name: apache2
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Start the Apache in Ubuntu
+  service:
+    name: apache2
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Apache Enterprise Service in CentOS
+  dnf:
+    name: httpd
+    state: present
+  when: ansible_distribution == "CentOS"
+
+- name: Start the http in CentOS
+  service:
+    name: httpd
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "CentOS"
+
+#- name: Configure the firewall http traffic
+#  shell: sudo firewall-cmd --permanent --add-port=80/tcp

@@ -1,0 +1,29 @@
+- name: Install Nagios Monitoring Service in Ubuntu
+  apt:
+    name: nagios4
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "Ubuntu"
+
+- name: Start the Nagios in Ubuntu
+  service:
+    name: nagios4
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Nagios Monitoring Service in CentOS
+  yum:
+    name: nagios
+    state: present
+    update_cache: yes
+  when: ansible_distribution == "CentOS"
+
+- name: Start the Nagios in CentOS
+  service:
+    name: nagios
+    state: restarted
+    enabled: true
+  when: ansible_distribution == "CentOS"
+
+
